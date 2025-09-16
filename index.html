@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Spotify Vibes — if this is their vibes RUN!</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>Spotify Vibes</h1>
+      <p class="subtitle">if this is their vibes RUN!</p>
+    </header>
+
+    <div class="controls">
+      <button id="btn-login" class="btn">Conectar com Spotify</button>
+      <a id="download" class="btn disabled" download="spotify-vibes.png">Baixar imagem</a>
+    </div>
+
+    <div class="canvas-wrap">
+      <!-- Canvas em 1920 x 1080 (gerado em alta, mas exibido responsivo) -->
+      <canvas id="collage" width="1920" height="1080"></canvas>
+    </div>
+
+    <p class="note">Após login a colagem será gerada automaticamente com suas faixas mais ouvidas.</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
