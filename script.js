@@ -1,5 +1,5 @@
 /* ========== CONFIG ========== */
-const CLIENT_ID = "0b7d668143fc45f082a02c9837b926fc"; // seu Client ID
+const CLIENT_ID = "b37de0410b874e75a2b582b5ace94001"; // seu Client ID
 const REDIRECT_URI = "https://jeanmbds.github.io/spotify-vibes-game/";
 const SCOPES = "user-top-read";
 
@@ -196,3 +196,4 @@ window.addEventListener("load", async () => {
   const didAuth = await handleAuthRedirect();
   if (didAuth) generateCollageFromSpotify();
 });
+
