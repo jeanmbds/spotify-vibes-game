@@ -1,6 +1,6 @@
 /* ========== CONFIG ========== */
-const CLIENT_ID = "SEU_CLIENT_ID_AQUI"; // substitua pelo seu novo client ID
-const REDIRECT_URI = window.location.origin + window.location.pathname;
+const CLIENT_ID = "SEU_CLIENT_ID_AQUI"; // substitua pelo seu client ID
+const REDIRECT_URI = "https://jeanmbds.github.io/spotify-vibes-game/"; // link exato do GitHub Pages
 const SCOPES = "user-top-read";
 
 /* ========== UI ========== */
@@ -12,7 +12,7 @@ const ctx = canvas.getContext("2d");
 let accessToken = null;
 let tokenExpiresAt = 0;
 
-/* ========== AUTENTICAÇÃO (PKCE/Implicit já configurado no Spotify Dashboard) ========== */
+/* ========== AUTENTICAÇÃO ========== */
 function buildAuthUrl() {
   const params = new URLSearchParams({
     client_id: CLIENT_ID,
@@ -44,7 +44,6 @@ function handleAuthRedirect() {
   if (!data || !data.access_token) return false;
   accessToken = data.access_token;
   tokenExpiresAt = Date.now() + (parseInt(data.expires_in || "3600", 10) * 1000);
-  history.replaceState({}, document.title, REDIRECT_URI);
   return true;
 }
 
@@ -87,7 +86,7 @@ function drawImageCover(img, dx, dy, dw, dh) {
   ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
 }
 
-/* ========== GERAR COLAGEM STORY 1920x1080 ========== */
+/* ========== GERAR COLAGEM 4x3 / STORY 1920x1080 ========== */
 async function generateCollageFromSpotify() {
   try {
     loginBtn.disabled = true;
@@ -104,7 +103,7 @@ async function generateCollageFromSpotify() {
     ctx.fillStyle = "#000";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // grid 4x3
+    // Grid 4x3
     const cols = 4, rows = 3;
     const cellW = Math.floor(canvas.width / cols);
     const cellH = Math.floor(canvas.height / rows);
@@ -117,6 +116,7 @@ async function generateCollageFromSpotify() {
       }
     }
 
+    // sobreposição para textos
     ctx.fillStyle = "rgba(0,0,0,0.25)";
     ctx.fillRect(0, 0, canvas.width, 110);
     ctx.fillRect(0, canvas.height - 140, canvas.width, 140);
@@ -148,6 +148,9 @@ async function generateCollageFromSpotify() {
     downloadLink.href = canvas.toDataURL("image/png");
     downloadLink.classList.remove("disabled");
 
+    // limpa hash depois que gerou a colagem
+    history.replaceState({}, document.title, REDIRECT_URI);
+
     loginBtn.disabled = false;
     loginBtn.textContent = "Re-conectar";
     return true;
@@ -161,7 +164,7 @@ async function generateCollageFromSpotify() {
   }
 }
 
-/* ========== LOAD / EVENTOS ========== */
+/* ========== EVENTOS ========== */
 loginBtn.addEventListener("click", () => {
   if (hasValidToken()) {
     generateCollageFromSpotify();
@@ -175,6 +178,7 @@ window.addEventListener("load", async () => {
     await generateCollageFromSpotify();
   }
 });
+
 
 
 
