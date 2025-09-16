@@ -5,7 +5,7 @@
 
 /* ========== CONFIG ========== */
 const CLIENT_ID = "0b7d668143fc45f082a02c9837b926fc"; // <-- substitua mais tarde no GitHub
-const REDIRECT_URI = window.location.origin + window.location.pathname; // exemplo: https://usuario.github.io/repo/
+const REDIRECT_URI = "https://jeanmbds.github.io/spotify-vibes-game/;" // exemplo: https://usuario.github.io/repo/
 const SCOPES = "user-top-read";
 
 /* ========== UI ========== */
@@ -199,5 +199,6 @@ window.addEventListener("load", async () => {
     // se já tivéssemos token salvo em sessionStorage (opcional), poderíamos reutilizar
   }
 });
+
 
 
