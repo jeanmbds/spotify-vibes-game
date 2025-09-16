@@ -1,5 +1,5 @@
 /* ========== CONFIG ========== */
-const CLIENT_ID = "SEU_CLIENT_ID_AQUI"; // substitua pelo seu client ID
+const CLIENT_ID = "6209eb5978864b8c951550b5ce16338a"; // substitua pelo seu client ID
 const REDIRECT_URI = "https://jeanmbds.github.io/spotify-vibes-game/"; // link exato do GitHub Pages
 const SCOPES = "user-top-read";
 
@@ -178,6 +178,7 @@ window.addEventListener("load", async () => {
     await generateCollageFromSpotify();
   }
 });
+
 
 
 
